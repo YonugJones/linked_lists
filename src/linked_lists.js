@@ -88,4 +88,16 @@ export default class LinkedList {
         }
         return false;
     }
+
+    find(value) {
+        if (this.head === null) return null;
+        let currentNode = this.head;
+        let index = 0;
+        while(currentNode !== null) {
+            if (currentNode.value === value) return index;
+            index += 1;
+            currentNode = currentNode.next;
+        }
+        return null;
+    }
 }
