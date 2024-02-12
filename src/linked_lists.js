@@ -78,4 +78,14 @@ export default class LinkedList {
         current.next = null;
         return popTail;
     }
+
+    contains(value) {
+        if (this.head === null) return false;
+        let current = this.head;
+        while (current.next !== null) {
+            if (current.value === value) return true;
+            current = current.next;
+        }
+        return false;
+    }
 }
