@@ -149,4 +149,61 @@ export default class LinkedList {
         string += ` -> null`;
         console.log(string);
     }
+
+    insertAt(value, index) {
+        if (index === 0) {
+            this.prepend(value);
+            console.log(`Node: ${value} added to head of list`);
+            return;
+        }
+        let current = this.head;
+        let previous = null;
+        let count = 0;
+        while (current !== null && count < index) {
+            previous = current;
+            current = current.next;
+            count += 1;
+        }
+        if (current === null) {
+            this.append(value);
+            console.log(`Node: ${value} added to end of list`);
+            return;
+        }
+        const newNode = new Node(value);
+        previous.next = newNode;
+        newNode.next = current;
+        console.log(`Node: ${value} added to index ${index}`);
+    }
+
+    removeAt(index) {
+        let current = this.head;
+        let previous = null;
+        let count = 0;
+
+        if (current === null) {
+            console.log(`List is empty, cannot remove node at index ${index}`);
+            return;
+        }
+
+        if (index === 0) {
+            const removedNode = current;
+            this.head = current.next;
+            console.log(`Node ${removedNode.value} at index: ${index} removed.`);
+            return;
+        }
+
+        while (current !== null && count < index) {
+            previous = current;
+            current = current.next;
+            count += 1;
+        }
+
+        if (current === null) {
+            console.log(`Index ${index} is out of bounds`);
+            return;
+        }
+        previous.next = current.next;
+        const removedNode = current;
+        console.log(`Node: ${removedNode.value} removed from index ${index}`);
+    }
 }
